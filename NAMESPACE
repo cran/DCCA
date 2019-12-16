@@ -1,0 +1,8 @@
+useDynLib(DCCA)
+
+## base packages
+import(checkmate)
+
+## Our Exports:
+exportPattern("^[^\\.]")
+
