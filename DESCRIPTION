@@ -1,6 +1,6 @@
 Package: DCCA
-Version: 0.1.0
-Date: 2019-11-11
+Version: 0.1.1
+Date: 2019-12-18
 Title: Detrended Fluctuation and Detrended Cross-Correlation Analysis
 Authors@R: c(person("Taiane Schaedler","Prass",
                      email = "taianeprass@gmail.com", 
@@ -19,10 +19,10 @@ License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 NeedsCompilation: yes
-Packaged: 2019-12-11 17:08:22 UTC; taian
+Packaged: 2019-12-19 00:11:21 UTC; Taiane
 Author: Taiane Schaedler Prass [aut, cre]
     (<https://orcid.org/0000-0003-3136-909X>),
   Guilherme Pumi [aut] (<https://orcid.org/0000-0002-6256-3170>)
 Maintainer: Taiane Schaedler Prass <taianeprass@gmail.com>
 Repository: CRAN
-Date/Publication: 2019-12-16 21:20:02 UTC
+Date/Publication: 2020-01-01 15:10:02 UTC

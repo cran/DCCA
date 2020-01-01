@@ -56,6 +56,7 @@ sum(abs(Kkron0 - Kkron))
 sum(abs(Kkron0 - KkronR))
 sum(abs(Kkron0 - KkronD))  # difference due to rounding error
 
+\dontrun{
 # Function Kkronm is computationaly faster than a pure implementation in R:
 
 m = 100
@@ -80,7 +81,7 @@ t4 = proc.time()
 # elapsed time
 t4-t3
 
-
+}
 }
 \references{Prass, T.S. and Pumi, G. (2019). On the behavior of the DFA and DCCA in trend-stationary
 processes <arXiv:1910.10589>.}

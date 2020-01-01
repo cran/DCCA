@@ -1,24 +1,3 @@
-subroutine matmulB(tx,nrx,ncx,x, ty, nry, ncy, y, z)
-  !------------------------------------------------
-  !
-  !  Matrix multiplication using dgemm from BLAS
-  !
-  !------------------------------------------------	
-  implicit none
-  integer, parameter :: dp = kind(1.d0)
-  integer :: tx, nrx, ncx, ty, nry, ncy 
-  real(dp) :: x(nrx, ncx), y(nry, ncy)
-  real(dp) :: z(nrx*(1-tx)+ncx*tx, nry*(1-ty)+ncy*ty)
-  character(len = 1) :: transx, transy
-
-  transx = "n"
-  transy = "n"
-  if(tx == 1) transx = "t"
-  if(ty == 1) transy = "t"
-  call dgemm(transx, transy, nrx, nry, ncx, 1.d0, x, nrx, y, nry, 0.d0, z, nrx)
-  return
-end subroutine matmulB
-
 subroutine inv(n, A, Ainv)
   !-------------------------------------------------------------------------------------------
   ! Returns the inverse of a matrix calculated by finding the LU
@@ -289,19 +268,18 @@ subroutine dfadcca(lm, m, v, overlap, n, Y1n, Y2n, f1, fd1m, f2, fd2m, f12, fd12
   real(dp) :: Y1n(max(1, n*max(f1,f12))), Y2n(max(1, n*max(f2,f12)))
   real(dp) :: rhom(max(lm*f1*f2*f12,1))
   real(dp) :: fd1m(max(lm*f1,1)), fd2m(max(lm*f2,1)), fd12m(max(lm*f12,1))
-  integer :: im, im1, im2, im12, imr
+  integer :: im, im1, im2, im12, imr, n1, n2
   real(dp), allocatable :: Q(:,:), R1n(:), R2n(:)
 
-  if(f1 == 1 .or. f12 == 1) then
-     if(allocated(R1n)) deallocate(R1n)
-     allocate(R1n(n))
-     call cumsum(Y1n, R1n, n)
-  end if
-  if(f1 == 1 .or. f12 == 1) then
-     if(allocated(R2n)) deallocate(R2n)
-     allocate(R2n(n))
-     call cumsum(Y2n, R2n, n)
-  end if
+  n1 = max(1, n*max(f1,f12))
+  n2 = max(1, n*max(f2,f12))
+  if(allocated(R1n)) deallocate(R1n)
+  if(allocated(R2n)) deallocate(R2n)  
+  allocate(R1n(n1), R2n(n2))
+  R1n = 0.d0
+  R2n = 0.d0
+  call cumsum(Y1n, R1n, n1)
+  call cumsum(Y2n, R2n, n2)
   
   do im = 1, lm
      if(allocated(Q)) deallocate(Q)

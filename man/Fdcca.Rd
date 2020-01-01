@@ -29,8 +29,9 @@ ms = 3:50
 F.dcca1 = Fdcca(y1, y2, m = ms, nu = 0, overlap = TRUE)
 F.dcca2 = Fdcca(y1, y2, m = ms, nu = 0, overlap = FALSE)
 
-plot(ms, F.dcca1, type = "o", xlab = "m", col = "blue", ylim = c(0,max(F.dcca1,F.dcca2)),
-            ylab = expression(F[DCCA]))
+plot(ms, F.dcca1, type = "o", xlab = "m", col = "blue",
+     ylim = c(min(F.dcca1,F.dcca2),max(F.dcca1,F.dcca2)),
+     ylab = expression(F[DCCA]))
 points(ms, F.dcca2, type = "o", col = "red")
 legend("bottomright", legend = c("overlapping","non-overlapping"),
        col = c("blue", "red"), lty= 1, bty = "n", pch=1)
@@ -68,8 +69,9 @@ ms = 3:50
 OF.dcca = Fdcca(y1, y2, m = ms, nu = 0, overlap = TRUE)
 NOF.dcca = Fdcca(y1, y2, m = ms, nu = 0, overlap = FALSE)
 
-plot(ms, OF.dcca, type = "o", xlab = "m", col = "blue", ylim = c(0,max(NOF.dcca,OF.dcca,EF.dcca)),
-            ylab = expression(F[DCCA]))
+plot(ms, OF.dcca, type = "o", xlab = "m", col = "blue",
+     ylim = c(min(NOF.dcca,OF.dcca,EF.dcca),max(NOF.dcca,OF.dcca,EF.dcca)),
+     ylab = expression(F[DCCA]))
 points(ms, NOF.dcca, type = "o", col = "darkgreen")
 points(ms, EF.dcca, type = "o", col = "red")
 legend("bottomright", legend = c("overlapping","non-overlapping","expected"),
